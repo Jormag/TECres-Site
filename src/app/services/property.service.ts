@@ -15,6 +15,7 @@ export class PropertyService {
 
   public resetProperty(){
     this.property = {
+      ID:null,
       titulo: null,
       descripcion: null,
       owner: null,
@@ -42,8 +43,9 @@ export class PropertyService {
 
   private fillProperties(){
     this.properties = [{
+      ID:1,
       titulo: "Casa Bella Vista",
-      descripcion: "",
+      descripcion: "Es una hermosa casa",
       owner: null,
       inmueble: Inmueble.Casa,
       ubicacion: {ID:1,provincia:"Cartago",canton:"Cartago",distrito:"Oriental"},
@@ -65,8 +67,9 @@ export class PropertyService {
       foto4: null,
       foto5: null
     }, {
+      ID:2,
       titulo: "Apartamentos ACME1PT",
-      descripcion: "null",
+      descripcion: "Apartamentos Fantasticos",
       owner: null,
       inmueble: Inmueble.Apartamento,
       ubicacion: {ID:1,provincia:"Cartago",canton:"Cartago",distrito:"Oriental"},

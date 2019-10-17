@@ -62,9 +62,6 @@ export const AdType2Label: Record<AdType, string> = {
     [AdType.Platino]:"Platino"
 }
 
-
-
-
 export enum UserState{
     Logged,
     NotLogged
@@ -109,6 +106,7 @@ export interface Usuario{
 }
 
 export interface Propiedad{
+    ID:number,
     titulo:string,
     descripcion:string,
     owner:Usuario,

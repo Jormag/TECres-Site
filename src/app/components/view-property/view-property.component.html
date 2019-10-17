@@ -8,11 +8,13 @@
                 <div class="card border-warning">
                     <div class="card-header text-white bg-dark">
                         <div class="row">
+                            <div class="col-auto text-left">
+                                <label class="card-title">{{propiedad.titulo}}</label>
+                            </div>
                             <div class="col text-left">
-                                <label class="card-title">{{propiedad.titulo}}|</label>
-                                <label
-                                    class="card-title">{{propiedad.ubicacion.provincia}},{{propiedad.ubicacion.canton}},{{propiedad.ubicacion.distrito}}|</label>
-                                <label class="card-title">{{propiedad.direccion}}</label>
+                                <ng-container *ngIf="propiedad.descripcion != null">
+                                    <label class="card-title">{{propiedad.descripcion}}</label>
+                                </ng-container>
                             </div>
                             <div class="col-auto text-right">
                                 <button class="form-control btn-outline-warning"><i class="fa fa-edit"></i></button>
@@ -23,10 +25,118 @@
                         </div>
 
                     </div>
+
                     <div class="card-body">
                         <div class="form-row">
+                            <div class="form-group col-auto">
+                                <label>Piso</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{P2L[propiedad.piso]}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label>Inmueble</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{I2L[propiedad.inmueble]}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-1">
+                                <label>Precio</label>
+                                <input type="number" class="form-control" value={{propiedad.precio}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label>Provincia</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{propiedad.ubicacion.provincia}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Canton</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{propiedad.ubicacion.canton}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Distrito</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{propiedad.ubicacion.distrito}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Direccion</label>
+                                <input type="text" class="form-control" value={{propiedad.direccion}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Lote </label>
+                                <input type="number" class="form-control" value={{propiedad.metrosCuadrados}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Construccion</label>
+                                <input type="number" class="form-control" value={{propiedad.metrosConstruccion}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Habitaciones</label>
+                                <input type="number" class="form-control" value={{propiedad.habitaciones}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Baños</label>
+                                <input type="number" class="form-control" value={{propiedad.bathrooms}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Parqueos</label>
+                                <input type="number" class="form-control" value={{propiedad.parqueos}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Niveles</label>
+                                <input type="number" class="form-control" value={{propiedad.niveles}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Gimnasio</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option *ngIf="propiedad.gimnasio">Si</option>
+                                    <option *ngIf="!propiedad.gimnasio">No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Piscina</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option *ngIf="propiedad.piscina">Si</option>
+                                    <option *ngIf="!propiedad.piscina">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-1">
+                                <label>Parqueo Visitas</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option *ngIf="propiedad.parqueoVisitas">Si</option>
+                                    <option *ngIf="!propiedad.parqueoVisitas">No</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <!-- Carrusel-->
+                        <div class="form-row">
                             <div class="col-md-3 text-center">
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <div id="carouselExampleIndicators{{propiedad.ID}}" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active">
                                         </li>
@@ -57,36 +167,19 @@
                                                 style="width:200px;height:200px;">
                                         </div>
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators{{propiedad.ID}}" role="button"
                                         data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators{{propiedad.ID}}" role="button"
                                         data-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="form-group col-auto">
-                                <label>Piso</label>
-                                <select class="form-control" [disabled]="desactivado">
-                                    <option>{{P2L[propiedad.piso]}}</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-auto">
-                                    <label>Inmueble</label>
-                                    <select class="form-control" [disabled]="desactivado">
-                                        <option>{{I2L[propiedad.inmueble]}}</option>
-                                    </select>
-                                </div>
-
                         </div>
-
-
                     </div>
                 </div>
                 <br>

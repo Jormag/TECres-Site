@@ -22,7 +22,6 @@ export class UserSignUpComponent implements OnInit {
 
     public P2L = Profile2Label;
     public PTypes = [this.P2L[Profile.Administrador],this.P2L[Profile.Agente],this.P2L[Profile.Comprador]];
-
     public profileTypes = Object.values(Profile).filter(value => typeof value === 'number');
 
   ngOnInit() {

@@ -1,1 +1,79 @@
-<p>view-ads works!</p>
+<div class="card border-warning">
+    <div class="card-header text-white bg-dark ">
+        <h6 class="card-title">Anuncios</h6>
+    </div>
+    <div class="card-body">
+        <form #form="ngForm" autocomplete="off">
+            <div *ngFor="let ad of _ads.ads">
+                <div class="card border-warning">
+                    <div class="card-header text-white bg-dark">
+                        <div class="row">
+                            <div class="col text-left">
+                            </div>
+                            <div class="col-auto text-right">
+                                <button class="form-control btn-outline-warning"><i class="fa fa-edit"></i></button>
+                            </div>
+                            <div class="col-auto text-right">
+                                <button class="form-control btn-outline-danger"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-auto">
+                                <label>Propiedad</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{ad.propiedad.titulo}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-2">
+                                <label>Publico Meta</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>
+                                        {{ad.publico.genero}}|{{ad.publico.edadMinima}}|{{ad.publico.edadMaxima}}|{{ad.publico.ingresos}}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Tipo Anuncio</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{ATypes[ad.tipo]}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Ingresos</label>
+                                <input type="number" class="form-control" value={{audience.ingresos}}
+                                    [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label>Provincia</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.provincia}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Canton</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.canton}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Distrito</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.distrito}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
