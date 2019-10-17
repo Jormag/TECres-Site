@@ -1,0 +1,65 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="card border-warning ">
+    <div class="card-header text-white bg-dark ">
+        <h6 class="card-title">Busqueda avanzada</h6>
+    </div>
+    <div class="card-body text-white bg-secondary">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-auto">
+                    <label for="inputProvince">Provincia</label>
+                    <select id="inputProvince" class="form-control" name="provincia" #provincia="ngModel"
+                        [(ngModel)]="_locations.tempLocation.provincia">
+                        <option *ngFor="let location of _locations.locations | uniqueProvince" value={{location}}>
+                            {{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputCanton">Canton</label>
+                    <select id="inputCanton" class="form-control" name="canton" #canton="ngModel"
+                        [(ngModel)]="_locations.tempLocation.canton"
+                        [disabled]="_locations.tempLocation.provincia == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | uniqueCanton"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputDistrict">Distrito</label>
+                    <select id="inputDistrict" class="form-control" name="distrito" #distrito="ngModel"
+                        [(ngModel)]="_locations.tempLocation.distrito"
+                        [disabled]="_locations.tempLocation.canton == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | cantonFilter:_locations.tempLocation.canton | uniqueDistrict"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-auto">
+                    <label for="inputMinPrice">Precio Minimo</label>
+                    <input type="number" class="form-control" id="inputMinPrice" placeholder="Precio Minimo" min="1">
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputMaxPrice">Precio Maximo</label>
+                    <input type="number" class="form-control" id="inputMaxPrice" placeholder="Precio Maximo"
+                        min="1"><span class="help-block"></span>
+                    <label id="error_precio" class="control-label col-md-12" style="display: block;"></label>
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputRooms">Habitaciones</label>
+                    <input type="number" class="form-control" id="inputRoomNumber" placeholder="Habitaciones">
+                </div>
+                <div class="form-group-btn">
+                    <div class="invisible">
+                        <label for="btnSearch">Buscar</label>
+                    </div>
+                    <button type="submit" class="form-control btn btn-dark" id="btnSearch">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

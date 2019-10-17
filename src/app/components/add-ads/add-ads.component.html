@@ -1,0 +1,193 @@
+<div class="card border-warning">
+        <div class="card-header text-white bg-dark ">
+            <h6 class="card-title">Agregar Anuncio</h6>
+        </div>
+        <div class="card-body">
+            <form #form="ngForm" autocomplete="off">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputTitle">Titulo</label>
+                        <input type="text" class="form-control" id="inputTitle" placeholder="Titulo" name="titulo"
+                            #titulo="ngModel" [(ngModel)]="_property.property.titulo">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputDescription">Descripcion</label>
+                        <input type="text" class="form-control" id="inputDescription" placeholder="Descripcion"
+                            name="descripcion" #descripcion="ngModel" [(ngModel)]="_property.property.descripcion">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputProvince">Provincia</label>
+                        <select id="inputProvince" class="form-control" name="provincia" #provincia="ngModel"
+                            [(ngModel)]="_locations.tempLocation.provincia">
+                            <option *ngFor="let location of _locations.locations | uniqueProvince" value={{location}}>
+                                {{location}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputCanton">Canton</label>
+                        <select id="inputCanton" class="form-control" name="canton" #canton="ngModel"
+                            [(ngModel)]="_locations.tempLocation.canton"
+                            [disabled]="_locations.tempLocation.provincia == null">
+                            <option
+                                *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | uniqueCanton"
+                                value={{location}}>{{location}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputDistrict">Distrito</label>
+                        <select id="inputDistrict" class="form-control" name="distrito" #distrito="ngModel"
+                            [(ngModel)]="_locations.tempLocation.distrito"
+                            [disabled]="_locations.tempLocation.canton == null">
+                            <option
+                                *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | cantonFilter:_locations.tempLocation.canton | uniqueDistrict"
+                                value={{location}}>{{location}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inputAddress">Direccion Exacta</label>
+                        <input id="inputAddress" class="form-control" name="direccion" #direccion="ngModel"
+                            placeholder="Direccion Exacta" [(ngModel)]="_property.property.direccion"
+                            [disabled]="tempLocation.distrito == null">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputPropertyType">Tipo Imnueble</label>
+                        <select id="inputPropertyType" class="form-control" name="inmueble" #inmueble="ngModel"
+                            [(ngModel)]="_property.property.inmueble">
+                            <option value=Inmueble.Apartamento>Apartamento</option>
+                            <option value=Inmueble.Casa>Casa</option>
+                            <option value=Inmueble.Lote>Lote</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputFloor">Piso</label>
+                        <select id="inputFloor" class="form-control" name="piso" #piso="ngModel"
+                            [(ngModel)]="_property.property.piso">
+                            <option value=Piso.cemento>Cemento</option>
+                            <option value=Piso.ceramica>Ceramica</option>
+                            <option value=Piso.porcelanato>Porcelanato</option>
+                            <option value=Piso.madera>Madera</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-group col-md-2">
+                        <label for="inputLote"> Lote</label>
+                        <input type="number" class="form-control" id="inputLote" placeholder="Metros Cuadrados"
+                            name="metrosCuadrados" min="1" #metrosCuadrados="ngModel"
+                            [(ngModel)]="_property.property.metrosCuadrados">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputBathrooms"> Construccion</label>
+                        <input type="number" class="form-control" id="inputBathrooms" placeholder="Metros Cuadrados"
+                            name="metrosConstruccion" #metrosConstruccion="ngModel" min="0"
+                            [(ngModel)]="_property.property.metrosConstruccion">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputRooms">Habitaciones</label>
+                        <input type="number" class="form-control" id="inputRooms" placeholder="Habitaciones"
+                            name="habitaciones" max="30" min="0" #habitaciones="ngModel"
+                            [(ngModel)]="_property.property.habitaciones">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputBathrooms">Baños</label>
+                        <input type="number" class="form-control" id="inputBathrooms" placeholder="Baños" name="bathrooms"
+                            #bathrooms="ngModel" max="30" min="0" [(ngModel)]="_property.property.bathrooms">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputParking">Parqueos</label>
+                        <input type="number" class="form-control" id="inputParking" placeholder="Parqueos" max="500" min="0"
+                            name="parqueos" #parqueos="ngModel" [(ngModel)]="_property.property.parqueos">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputFlours">Niveles</label>
+                        <input type="number" class="form-control" id="inputFlours" placeholder="Niveles" max="30" min="0"
+                            name="niveles" #niveles="ngModel" [(ngModel)]="_property.property.niveles">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="inputGym">Gimnsasio</label>
+                        <select id="inputGym" class="form-control" name="gimnasio" #gimnasio="ngModel"
+                            [(ngModel)]="_property.property.gimnasio">
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-group col-md-2">
+                        <label for="inputPool">Piscina</label>
+                        <select id="inputPool" class="form-control" name="piscina" #piscina="ngModel"
+                            [(ngModel)]="_property.property.piscina">
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputGuessParking">Parqueo Visitas</label>
+                        <select id="inputGuessParking" class="form-control" name="parqueoVisitas" #parqueoVisitas="ngModel"
+                            [(ngModel)]="_property.property.parqueoVisitas">
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div>
+                    <label>Fotos</label>
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="casillaFileName1" class="custom-file-label">Foto 1...</label>
+                            <input type="file" class="custom-file-input" id="foto1" name="foto1" #foto1="ngModel"
+                                [(ngModel)]="_property.property.foto1">
+                        </div>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="casillaFileName2" class="custom-file-label">Foto 2...</label>
+                            <input type="file" class="custom-file-input" id="foto2" name="foto2" #foto2="ngModel"
+                                [(ngModel)]="_property.property.foto2">
+                        </div>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="casillaFileName3" class="custom-file-label">Foto 3...</label>
+                            <input type="file" class="custom-file-input" id="foto3" name="foto3" #foto3="ngModel"
+                                [(ngModel)]="_property.property.foto3">
+                        </div>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="casillaFileName4" class="custom-file-label">Foto 4...</label>
+                            <input type="file" class="custom-file-input" id="foto4" name="foto4" #foto4="ngModel"
+                                [(ngModel)]="_property.property.foto4">
+                        </div>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="casillaFileName5" class="custom-file-label">Foto 5...</label>
+                            <input type="file" class="custom-file-input" id="foto5" name="foto5" #foto5="ngModel"
+                                [(ngModel)]="_property.property.foto5">
+                        </div>
+                    </div>
+                </div>
+    
+                <button type="submit" class="btn btn-dark" (click)="registrar()">Registrar Propiedad</button>
+            </form>
+        </div>
+    </div>

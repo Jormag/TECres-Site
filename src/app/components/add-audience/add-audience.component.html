@@ -1,0 +1,70 @@
+<div class="card border-warning">
+    <div class="card-header text-white bg-dark ">
+        <h6 class="card-title">Agregar Publico Meta</h6>
+    </div>
+    <div class="card-body">
+        <form #form="ngForm" autocomplete="off">
+
+            <div class="form-row">
+                <div class="form-group col-auto">
+                    <label for="inputGender">Genero</label>
+                    <select id="inputGender" class="form-control" name="genero" #genero="ngModel"
+                        [(ngModel)]="_audience.audience.genero">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputMinAge">Edad Minima</label>
+                    <input type="number" class="form-control" id="inputMinAge" placeholder="Minima" min="18" max="99"
+                        name="edadMinima" #edadMinima="ngModel" [(ngModel)]="_audience.audience.edadMinima">
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputMaxAge">Edad Maxima</label>
+                    <input type="number" class="form-control" id="inputMaxAge" placeholder="Maxima" min="18" max="99"
+                        name="edadMaxima" #edadMaxima="ngModel" [(ngModel)]="_audience.audience.edadMaxima">
+                    <span class="help-block"></span>
+                    <label id="error_edad" class="control-label col-auto" style="display: block;"></label>
+                </div>
+                <div class="form-group col-auto">
+                    <label for="inputSalary">Ingresos</label>
+                    <input type="number" class="form-control" id="inputSalary" placeholder="Ingresos" min="1"
+                        name="ingresos" #ingresos="ngModel" [(ngModel)]="_audience.audience.ingresos">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputProvince">Provincia</label>
+                    <select id="inputProvince" class="form-control" name="provincia" #provincia="ngModel"
+                        [(ngModel)]="_locations.tempLocation.provincia">
+                        <option *ngFor="let location of _locations.locations | uniqueProvince" value={{location}}>
+                            {{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputCanton">Canton</label>
+                    <select id="inputCanton" class="form-control" name="canton" #canton="ngModel"
+                        [(ngModel)]="_locations.tempLocation.canton"
+                        [disabled]="_locations.tempLocation.provincia == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | uniqueCanton"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputDistrict">Distrito</label>
+                    <select id="inputDistrict" class="form-control" name="distrito" #distrito="ngModel"
+                        [(ngModel)]="_locations.tempLocation.distrito"
+                        [disabled]="_locations.tempLocation.canton == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | cantonFilter:_locations.tempLocation.canton | uniqueDistrict"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Crear Publico Meta</button>
+        </form>
+    </div>
+</div>

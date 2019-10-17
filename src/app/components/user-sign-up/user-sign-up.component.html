@@ -1,0 +1,142 @@
+<div class="card border-warning">
+    <div class="card-header text-white bg-dark ">
+        <h6 class="card-title">Registro</h6>
+    </div>
+    <div class="card-body">
+        <form #form="ngForm" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputUser">Usuario</label>
+                    <input type="text" class="form-control" id="inputUser" placeholder="Usuario" name="usuario"
+                        #usuario="ngModel" [(ngModel)]="_user.user.usuario">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPassword">Contraseña</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputRePassword">Repetir Contraseña</label>
+                    <!-- Hace falta encriptar la password aca -->
+                    <input type="password" class="form-control" id="inputRePassword" placeholder="Contraseña"
+                        name="password" #password="ngModel" [(ngModel)]="_user.user.password"><span
+                        class="help-block"></span>
+                    <label id="error_contraseña" class="control-label col-md-12" style="display: block;">Las
+                        constraseñas si coinciden</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Nombre</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Nombre" name="nombre"
+                        #nombre="ngModel" [(ngModel)]="_user.user.nombre">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputFirstLastname">Primer Apellido</label>
+                    <input type="text" class="form-control" id="inputFirstLastname" placeholder="Primer Apellido"
+                        name="apellidoPaterno" #apellidoPaterno="ngModel" [(ngModel)]="_user.user.apellidoPaterno">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputFirstLastname">Segundo Apellido</label>
+                    <input type="text" class="form-control" id="inputSecondLastname" placeholder="Segundo Apellido"
+                        name="apellidoMaterno" #apellidoMaterno="ngModel" [(ngModel)]="_user.user.apellidoMaterno">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputProfile">Perfil</label>
+                    <select id="inputProfile" class="form-control" name="perfil" #perfil="ngModel"
+                        [(ngModel)]="_user.user.perfil">
+                        <option *ngFor="let profile of profileTypes" value={{profile}}>{{PTypes[profile-1]}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="inputID">Cedula</label>
+                        <input type="number" class="form-control" id="inputID" placeholder="Cedula" name="cedula"
+                            #cedula="ngModel" [(ngModel)]="_user.user.cedula">
+                    </div>
+            </div>
+
+            <ng-container *ngIf="check()">
+
+            </ng-container>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputGender">Genero</label>
+                    <select id="inputGender" class="form-control" name="genero" #genero="ngModel"
+                        [(ngModel)]="_user.user.genero">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputBirthDate">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="inputBirthDate" max="{{maxDate | date:'yyyy-MM-dd'}}"
+                        name="fechaNacimiento" #fechaNacimiento="ngModel" [(ngModel)]="_user.user.fechaNacimiento">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputOccupation">Ocupacion</label>
+                    <select id="inputOccupation" class="form-control" name="ocupacion" #ocupacion="ngModel"
+                        [(ngModel)]="_user.user.ocupacion">
+                        <option *ngFor="let ocupacion of _occupations.occupations" value={{ocupacion.name}}>
+                            {{ocupacion.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputSalary">Salario mensual</label>
+                    <input type="number" class="form-control" id="inputSalary" placeholder="Salario mensual" min="1"
+                        name="salario" #salario="ngModel" [(ngModel)]="_user.user.salario">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputProvince">Provincia</label>
+                    <select id="inputProvince" class="form-control" name="provincia" #provincia="ngModel"
+                        [(ngModel)]="_locations.tempLocation.provincia">
+                        <option *ngFor="let location of _locations.locations | uniqueProvince" value={{location}}>
+                            {{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputCanton">Canton</label>
+                    <select id="inputCanton" class="form-control" name="canton" #canton="ngModel"
+                        [(ngModel)]="_locations.tempLocation.canton"
+                        [disabled]="_locations.tempLocation.provincia == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | uniqueCanton"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputDistrict">Distrito</label>
+                    <select id="inputDistrict" class="form-control" name="distrito" #distrito="ngModel"
+                        [(ngModel)]="_locations.tempLocation.distrito"
+                        [disabled]="_locations.tempLocation.canton == null">
+                        <option
+                            *ngFor="let location of _locations.locations | provinceFilter:_locations.tempLocation.provincia | cantonFilter:_locations.tempLocation.canton | uniqueDistrict"
+                            value={{location}}>{{location}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" id="inputEmail" class="form-control" name="email" #email="ngModel" [(ngModel)]="_user.user.email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputNationality">Nacionalidad</label>
+                        <input type="text" id="inputNationality" class="form-control" name="nacionalidad" #nacionalidad="ngModel" [(ngModel)]="_user.user.nacionalidad">
+                    </div>
+                </div>
+            <button type="submit" class="btn btn-dark">Registrarse</button>
+        </form>
+    </div>
+</div>

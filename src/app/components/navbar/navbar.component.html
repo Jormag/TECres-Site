@@ -1,0 +1,51 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Icono de busqueda para un boton -->
+<!-- <i class="fa fa-search"></i> -->
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="navbar-header">
+        <button class="btn btn-outline-light" id="menu-toggle">
+            <i class="fa fa-bars"></i>
+            Menú
+        </button>
+        <a class="navbar-brand"> <img src="assets/images/Logo TECres.png" class="img-responsive logo" (click)="home()"
+                alt="TECres"></a>
+    </div>
+
+    <form class="navbar-form navbar">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-outline-light" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <ng-container *ngIf="checkLogOutState()">
+        <div class="btn-group dropleft">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" (click)="logIn()">Iniciar Sesion</a>
+                <a class="dropdown-item" href="#" (click)="signUp()">Registrarse</a>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="checkLogInState()">
+        <div class="btn-group dropleft">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesion</a>
+                <a class="dropdown-item" href="#" (click)="viewProfile()">Ver Perfil</a>
+            </div>
+        </div>
+    </ng-container>
+</nav>

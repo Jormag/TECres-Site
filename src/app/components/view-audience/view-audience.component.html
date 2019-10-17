@@ -1,0 +1,72 @@
+<div class="card border-warning">
+    <div class="card-header text-white bg-dark ">
+        <h6 class="card-title">Publicos Meta</h6>
+    </div>
+    <div class="card-body">
+        <form #form="ngForm" autocomplete="off">
+            <div *ngFor="let audience of _audience.audiences">
+                <div class="card border-warning">
+                    <div class="card-header text-white bg-dark">
+                        <div class="row">
+                            <div class="col text-left">
+                            </div>
+                            <div class="col-auto text-right">
+                                <button class="form-control btn-outline-warning"><i class="fa fa-edit"></i></button>
+                            </div>
+                            <div class="col-auto text-right">
+                                <button class="form-control btn-outline-danger"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-auto">
+                                <label>Genero</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.genero}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Edad Minima</label>
+                                <input type="number" class="form-control" value={{audience.edadMinima}} [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Edad Maxima</label>
+                                <input type="number" class="form-control" value={{audience.edadMaxima}} [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-1">
+                                <label>Ingresos</label>
+                                <input type="number" class="form-control" value={{audience.ingresos}} [disabled]="desactivado">
+                            </div>
+
+                            <div class="form-group col-auto">
+                                <label>Provincia</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.provincia}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Canton</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.canton}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-auto">
+                                <label>Distrito</label>
+                                <select class="form-control" [disabled]="desactivado">
+                                    <option>{{audience.ubicacion.distrito}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>

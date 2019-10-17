@@ -1,0 +1,118 @@
+<div class="d-flex " id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-dark text-white border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Menu </div>
+        <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action text-white bg-secondary"
+                (click)="advanceSearchOn()">
+                <i class="fa fa-search"></i>
+                Busqueda Avanzada
+            </a>
+
+            <a href="#submenuPropiedades" data-toggle="collapse" aria-expanded="false"
+                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-home fa-fw mr-1"></span>
+                    <span class="menu-collapsed">Gestion Propiedades</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+
+            <div id='submenuPropiedades' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewProperty()">
+                    <span class="menu-collapsed">Mostrar</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addProperty()">
+                    <span class="menu-collapsed">Agregar</span>
+                </a>
+            </div>
+
+            <a href="#submenuAnuncios" data-toggle="collapse" aria-expanded="false"
+                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-address-card fa-fw mr-1"></span>
+                    <span class="menu-collapsed">Gestion Anuncios</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+
+            <div id='submenuAnuncios' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewAds()">
+                    <span class="menu-collapsed">Mostrar</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addAds()">
+                    <span class="menu-collapsed">Agregar</span>
+                </a>
+            </div>
+
+            <a href="#submenuPublico" data-toggle="collapse" aria-expanded="false"
+                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-users fa-fw mr-1"></span>
+                    <span class="menu-collapsed"> Gestion Publico Meta</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+
+            <div id='submenuPublico' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewAudience()">
+                    <span class="menu-collapsed">Mostrar</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addAudience()">
+                    <span class="menu-collapsed">Agregar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <ng-container *ngIf="checkSearchState() && checkAdvanceSearch()">
+            <app-search></app-search>
+        </ng-container>
+
+        <ng-container *ngIf="checkSearchState()">
+            <app-main-view></app-main-view>
+        </ng-container>
+
+        <ng-container *ngIf="checkSignUpState()">
+            <app-user-sign-up></app-user-sign-up>
+        </ng-container>
+
+        <ng-container *ngIf="checkLogInProgressState()">
+            <app-log-in></app-log-in>
+        </ng-container>
+
+        <ng-container *ngIf="checkProfileState()">
+            <app-user-tab></app-user-tab>
+        </ng-container>
+
+        <ng-container *ngIf="checkAddPropertyState()">
+            <app-add-property></app-add-property>
+        </ng-container>
+
+        <ng-container *ngIf="checkViewPropertyState()">
+            <app-view-property></app-view-property>
+        </ng-container>
+
+        <ng-container *ngIf="checkAddAdsState()">
+            <app-add-ads></app-add-ads>
+        </ng-container>
+
+        <ng-container *ngIf="checkViewAdsState()">
+            <app-view-ads></app-view-ads>
+        </ng-container>
+
+        <ng-container *ngIf="checkAddAudienceState()">
+            <app-add-audience></app-add-audience>
+        </ng-container>
+
+        <ng-container *ngIf="checkViewAudienceState()">
+            <app-view-audience></app-view-audience>
+        </ng-container>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
