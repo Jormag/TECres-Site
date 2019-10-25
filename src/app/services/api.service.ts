@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable'
-import { LoginResponse } from '../Common/interfaces';
+import { LoginResponse } from 'src/app/common/interfaces';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

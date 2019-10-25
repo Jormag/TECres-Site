@@ -43,7 +43,7 @@ export class UserService {
       nombre: "Cristian",
       apellidoPaterno: "Marin",
       apellidoMaterno: "Murillo",
-      profile: Profile.Comprador,
+      profile: {ID:3,Perfil:"Comprador"},
       cedula: 207710175,
       //Para clientes
       genero: "Masculino",
@@ -54,7 +54,7 @@ export class UserService {
       email: "cmarinmurillo@gmail.com",
       nacionalidad: "Costarricense",
       //Para agentes
-      ingreso: null
+      ingreso: "2019-09-16"
     }]
   }
 }

@@ -5,11 +5,19 @@ import { Occupation } from 'src/app/common/interfaces';
   providedIn: 'root'
 })
 export class OccupationService {
-
-  public occupations:Occupation[];
+  public occupation:Occupation
+  public occupations:Occupation[]
 
   constructor(){
-    this.fillOccupations;
+    this.resetOccupation();
+    this.fillOccupations();
+  }
+
+  public resetOccupation(){
+    this.occupation = {
+      ID: null,
+      name: null
+    }
   }
 
   private fillOccupations(){

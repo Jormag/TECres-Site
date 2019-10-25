@@ -11,7 +11,7 @@ import { Locations } from 'src/app/common/interfaces';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private _locations: LocationService) {
+  constructor(public _locations: LocationService) {
    }
 
   ngOnInit() {

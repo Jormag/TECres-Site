@@ -29,45 +29,41 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-2">
+                            <div class="form-group col-auto">
                                 <label>Publico Meta</label>
                                 <select class="form-control" [disabled]="desactivado">
                                     <option>
-                                        {{ad.publico.genero}}|{{ad.publico.edadMinima}}|{{ad.publico.edadMaxima}}|{{ad.publico.ingresos}}
+                                        {{ad.publico.genero}} {{ad.publico.edadMinima}} {{ad.publico.edadMaxima}} {{ad.publico.ingresos}}
                                     </option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-1">
+                            <div class="form-group col-auto">
                                 <label>Tipo Anuncio</label>
                                 <select class="form-control" [disabled]="desactivado">
-                                    <option>{{ATypes[ad.tipo]}}</option>
+                                    <option>{{ad.tipo.Tipo}}</option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-1">
-                                <label>Ingresos</label>
-                                <input type="number" class="form-control" value={{audience.ingresos}}
+                            <div class="form-group col-auto">
+                                <label>Fecha Inicio</label>
+                                <input type="date" class="form-control" value={{ad.fechaInicio}}
                                     [disabled]="desactivado">
                             </div>
 
                             <div class="form-group col-auto">
-                                <label>Provincia</label>
-                                <select class="form-control" [disabled]="desactivado">
-                                    <option>{{audience.ubicacion.provincia}}</option>
-                                </select>
+                                <label>Fecha Final</label>
+                                <input type="date" class="form-control" value={{ad.fechaFin}} [disabled]="desactivado">
                             </div>
+
                             <div class="form-group col-auto">
-                                <label>Canton</label>
-                                <select class="form-control" [disabled]="desactivado">
-                                    <option>{{audience.ubicacion.canton}}</option>
-                                </select>
+                                <label>Tarjeta</label>
+                                <input type="number" class="form-control" value={{ad.tarjeta}} [disabled]="desactivado">
                             </div>
+
                             <div class="form-group col-auto">
-                                <label>Distrito</label>
-                                <select class="form-control" [disabled]="desactivado">
-                                    <option>{{audience.ubicacion.distrito}}</option>
-                                </select>
+                                <label>Comision</label>
+                                <input type="number" class="form-control" value={{ad.comision}} [disabled]="desactivado">
                             </div>
                         </div>
                     </div>

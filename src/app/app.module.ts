@@ -28,6 +28,10 @@ import { SearchService } from './services/search.service';
 import { AdsService } from './services/ads.service';
 import { AddAudienceComponent } from './components/add-audience/add-audience.component';
 import { ViewAudienceComponent } from './components/view-audience/view-audience.component';
+import { PropertyTypeService } from './services/property-type.service';
+import { FloorService } from './services/floor.service';
+import { AdTypeService } from './services/ad-type.service';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { ViewAudienceComponent } from './components/view-audience/view-audience.
     PropertyService,
     AudienceService,
     SearchService,
-    AdsService
+    AdsService,
+    PropertyTypeService,
+    FloorService,
+    AdTypeService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

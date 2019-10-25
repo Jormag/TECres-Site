@@ -14,57 +14,35 @@ export enum AppState{
     EditarPublico
 }
 
-export enum Inmueble{
-    Lote = 1,
-    Casa = 2,
-    Apartamento = 3
-}
-export const Inmueble2Label: Record<Inmueble, string> = {
-    [Inmueble.Lote]: "Lote",
-    [Inmueble.Casa]: "Casa",
-    [Inmueble.Apartamento]:"Apartamento"
-}
-
-export enum Piso{
-    Concreto = 1,
-    Ceramica = 2,
-    Porcelanato = 3,
-    Madera = 4
-}
-export const Piso2Label: Record<Piso, string> = {
-    [Piso.Concreto]: "Concreto",
-    [Piso.Ceramica]: "Ceramica",
-    [Piso.Porcelanato]:"Porcelanato",
-    [Piso.Madera]:"Madera"
-}
-
-export enum Profile{
-    Administrador = 1,
-    Agente = 2,
-    Comprador = 3
-}
-export const Profile2Label: Record<Profile, string> = {
-    [Profile.Administrador]: "Administrador",
-    [Profile.Agente]: "Agente",
-    [Profile.Comprador]:"Comprador"
-}
-
-export enum AdType{
-    Normal = 1,
-    Destacado = 2,
-    Oro = 3,
-    Platino =4
-}
-export const AdType2Label: Record<AdType, string> = {
-    [AdType.Normal]: "Normal",
-    [AdType.Destacado]: "Destacado",
-    [AdType.Oro]:"Oro",
-    [AdType.Platino]:"Platino"
-}
-
 export enum UserState{
     Logged,
     NotLogged
+}
+
+export enum ProfileState{
+    Agente,
+    Comprador
+}
+
+export interface Inmueble{
+    ID: number,
+    TipoInmueble: string
+}
+
+export interface Piso{
+    ID: number,
+    TipoPiso: string
+}
+
+export interface Profile{
+    ID:number,
+    Perfil:string
+}
+
+export interface AdType{
+    ID:number,
+    Tipo:string,
+    Precio:number
 }
 
 export interface LoginResponse{
@@ -102,7 +80,7 @@ export interface Usuario{
     email:string,
     nacionalidad:string,
     //Para agentes
-    ingreso:Date
+    ingreso:string
 }
 
 export interface Propiedad{

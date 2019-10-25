@@ -56,11 +56,13 @@ export class SidebarComponent implements OnInit {
     this._state.appState=AppState.MostrarPublico;
     this._state.advanceSearch = false;
   }
+  checkUserLogged():Boolean{
+    return(this._state.userState == UserState.Logged)
+  }
 
   checkAdvanceSearch():Boolean{
     return(this._state.advanceSearch)
   }
-
   checkSignUpState():Boolean{
     return (this._state.appState == AppState.Registro)
   }

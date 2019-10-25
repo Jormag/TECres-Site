@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { PropertyService } from 'src/app/services/property.service';
-import { Locations, Piso, Inmueble, AppState } from 'src/app/common/interfaces';
+import { StateService } from 'src/app/services/state.service';
 import { LocationService } from 'src/app/services/location.service';
+import { FloorService } from 'src/app/services/floor.service';
+import { PropertyTypeService } from 'src/app/services/property-type.service';
+import { AppState } from 'src/app/common/interfaces';
 import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
-import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-add-property',
@@ -15,22 +17,23 @@ import { StateService } from 'src/app/services/state.service';
 export class AddPropertyComponent implements OnInit {
 
   constructor(
-    private _user: UserService,
-    private _property: PropertyService,
-    private _locations: LocationService,
-    public _state: StateService
+    public _user: UserService,
+    public _property: PropertyService,
+    public _locations: LocationService,
+    public _state: StateService,
+    public _floors: FloorService,
+    public _propertyTypes: PropertyTypeService
   ) { }
 
   ngOnInit() {
-    this._locations.resetTempLocation();
-    this.resetProperty();
-
     $('.custom-file-input').on('change', function (event) {
       var inputFile = event.currentTarget;
       $(inputFile).parent()
         .find('.custom-file-label')
         .html(inputFile.files[0].name);
     });
+
+    this.resetProperty();
   }
 
   resetProperty(form?: NgForm) {
@@ -38,6 +41,7 @@ export class AddPropertyComponent implements OnInit {
       form.resetForm();
     }
     this._property.resetProperty();
+    this._locations.resetTempLocation();
   }
 
   registrar(){

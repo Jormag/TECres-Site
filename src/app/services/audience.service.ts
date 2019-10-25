@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Publico } from '../common/interfaces';
+import { Publico } from 'src/app/common/interfaces';
 
 @Injectable({
   providedIn: 'root'

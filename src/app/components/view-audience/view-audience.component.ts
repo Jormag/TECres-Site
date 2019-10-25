@@ -10,8 +10,8 @@ import { LocationService } from 'src/app/services/location.service';
 export class ViewAudienceComponent implements OnInit {
 
   constructor(
-    private _audience:AudienceService,
-    private _locations:LocationService
+    public _audience:AudienceService,
+    public _locations:LocationService
   ) { }
 
   public desactivado:boolean = true;

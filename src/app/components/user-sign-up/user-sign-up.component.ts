@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile, Usuario, Locations, Profile2Label } from 'src/app/common/interfaces'
-import * as $ from 'jquery';
-import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { OccupationService } from 'src/app/services/occupation.service';
 import { LocationService } from 'src/app/services/location.service';
 import { StateService } from 'src/app/services/state.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { NgForm } from '@angular/forms';
+import * as $ from 'jquery';
+import { ProfileState } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -14,15 +15,14 @@ import { StateService } from 'src/app/services/state.service';
 })
 export class UserSignUpComponent implements OnInit {
   constructor(
-    private _user: UserService,
-    private _occupations: OccupationService,
-    private _locations: LocationService,
-    private _state: StateService
+    public _user: UserService,
+    public _occupations: OccupationService,
+    public _locations: LocationService,
+    public _state: StateService,
+    public _profile: ProfileService
     ) { }
 
-    public P2L = Profile2Label;
-    public PTypes = [this.P2L[Profile.Administrador],this.P2L[Profile.Agente],this.P2L[Profile.Comprador]];
-    public profileTypes = Object.values(Profile).filter(value => typeof value === 'number');
+    public profileState:ProfileState = ProfileState.Agente;
 
   ngOnInit() {
     $(function () {
@@ -54,7 +54,14 @@ export class UserSignUpComponent implements OnInit {
     $("#inputRePassword").on('keyup', checkPassword);
 
     this.resetUser();
-    this._locations.resetTempLocation();
+  }
+
+  setAgente(){
+    this.profileState = ProfileState.Agente;
+  }
+
+  setComprador(){
+    this.profileState = ProfileState.Comprador;
   }
 
   resetUser(form?: NgForm) {
@@ -62,21 +69,12 @@ export class UserSignUpComponent implements OnInit {
       form.resetForm();
     }
     this._user.resetUser();
+    this._locations.resetTempLocation();
   }
 
 
-  public check(){
-    if(this._user.user.profile == Profile.Comprador){
-      return true;
-    }else{
-      return false;
-    }
-  }
-  public setComprador(){
-    this._user.user.profile = Profile.Comprador
-  }
-  public setAgente(){
-    this._user.user.profile = Profile.Agente
+  public checkProfile():Boolean{
+    return (this._user.user.profile != null && this._user.user.profile.Perfil == "Comprador");
   }
 
   private asignarUserLocation() {

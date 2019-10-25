@@ -18,6 +18,8 @@ export class LogInComponent implements OnInit {
     public _state: StateService
   ) {
   }
+  public usuario:string
+  public password:string
 
   ngOnInit() {
     $("#login-btn").click(function (e) {
@@ -28,8 +30,13 @@ export class LogInComponent implements OnInit {
   logIn() {
     const user = (document.querySelector('#user') as HTMLInputElement).value
     const password = (document.querySelector('#password') as HTMLInputElement).value
-    this._state.userState = UserState.Logged
-    this._state.appState = AppState.Busqueda
+    for(let user of this._user.users){
+      if(this.usuario == user.usuario && this.password == user.password){
+        this._state.userState = UserState.Logged
+        this._state.appState = AppState.Busqueda
+      }
+    }
+
     /*this._api.logIn(user, password).subscribe(Response => {
       if (Response.success) {
         this._user.user = Response.user,

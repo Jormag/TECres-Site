@@ -14,43 +14,44 @@
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <label for="inputAudience">Publico Meta</label>
                     <select id="inputAudience" class="form-control" name="publico" #publico="ngModel"
                         [(ngModel)]="_ads.ad.publico">
-                        <option *ngFor="let audience of _audience.audiences" value={{audience}}>{{audience.genero}}|{{audience.edadMinima}}|{{audience.edadMaxima}}|{{audience.ingresos}}
+                        <option *ngFor="let audience of _audience.audiences" value={{audience}}>
+                            {{audience.genero}} {{audience.edadMinima}} {{audience.edadMaxima}} {{audience.ingresos}}
                         </option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-auto">
                     <label for="inputType">Tipo Anuncio</label>
                     <select id="inputType" class="form-control" name="tipo" #tipo="ngModel" [(ngModel)]="_ads.ad.tipo">
-                        <option *ngFor="let ad of AdTypes" value={{ad}}>{{ATypes[ad-1]}}</option>
+                        <option *ngFor="let adType of _adTypes.adTypes" value={{adType}}>{{adType.Tipo}}</option>
                     </select>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-auto">
                     <label for="inputStartDate">Fecha Inicial</label>
-                    <input type="date" class="form-control" id="inputStartDate" min="{{minDate | date:'yyyy-MM-dd'}}"
+                    <input type="date" class="form-control" id="inputStartDate"
                         name="fechaInicio" #fechaInicio="ngModel" [(ngModel)]="_ads.ad.fechaInicio">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-auto">
                     <label for="inputEndDate">Fecha Final</label>
-                    <input type="date" class="form-control" id="inputEndDate" min="{{minDate | date:'yyyy-MM-dd'}}"
-                        name="fechaFin" #fechaFin="ngModel" [(ngModel)]="_ads.ad.fechaFin">
+                    <input type="date" class="form-control" id="inputEndDate"
+                        name="fechaFin" #fechaFin="ngModel" [(ngModel)]="_ads.ad.fechaFin"><span class="help-block"></span>
+                        <label id="error_fechas" class="control-label col-auto" style="display: block;">
+                            Las fechas funcionan</label>
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label for="inputCard">Numero Tarjeta</label>
                     <input type="number" id="inputCard" class="form-control" name="tarjeta" #tarjeta="ngModel"
                         [(ngModel)]="_ads.ad.tarjeta">
                 </div>
             </div>
-            
+
             <button type="submit" class="btn btn-dark">Registrar Anuncio</button>
         </form>
     </div>

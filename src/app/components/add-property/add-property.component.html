@@ -5,12 +5,12 @@
     <div class="card-body">
         <form #form="ngForm" autocomplete="off">
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="inputTitle">Titulo</label>
                     <input type="text" class="form-control" id="inputTitle" placeholder="Titulo" name="titulo"
                         #titulo="ngModel" [(ngModel)]="_property.property.titulo">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                     <label for="inputDescription">Descripcion</label>
                     <input type="text" class="form-control" id="inputDescription" placeholder="Descripcion"
                         name="descripcion" #descripcion="ngModel" [(ngModel)]="_property.property.descripcion">
@@ -46,13 +46,14 @@
                             value={{location}}>{{location}}</option>
                     </select>
                 </div>
+
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <label for="inputAddress">Direccion Exacta</label>
                     <input id="inputAddress" class="form-control" name="direccion" #direccion="ngModel"
                         placeholder="Direccion Exacta" [(ngModel)]="_property.property.direccion"
-                        [disabled]="tempLocation.distrito == null">
+                        [disabled]="_locations.tempLocation.distrito == null">
                 </div>
             </div>
 
@@ -61,19 +62,16 @@
                     <label for="inputPropertyType">Tipo Imnueble</label>
                     <select id="inputPropertyType" class="form-control" name="inmueble" #inmueble="ngModel"
                         [(ngModel)]="_property.property.inmueble">
-                        <option value=Inmueble.Apartamento>Apartamento</option>
-                        <option value=Inmueble.Casa>Casa</option>
-                        <option value=Inmueble.Lote>Lote</option>
+                        <option *ngFor="let propertyType of _propertyTypes.propertyTypes" value={{propertyType.TipoInmueble}}>
+                                {{propertyType.TipoInmueble}}</option>
                     </select>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputFloor">Piso</label>
                     <select id="inputFloor" class="form-control" name="piso" #piso="ngModel"
                         [(ngModel)]="_property.property.piso">
-                        <option value=Piso.cemento>Cemento</option>
-                        <option value=Piso.ceramica>Ceramica</option>
-                        <option value=Piso.porcelanato>Porcelanato</option>
-                        <option value=Piso.madera>Madera</option>
+                        <option *ngFor="let floor of _floors.floors" value={{floor.TipoPiso}}>
+                                {{floor.TipoPiso}}</option>
                     </select>
                 </div>
 
@@ -186,7 +184,6 @@
                     </div>
                 </div>
             </div>
-
             <button type="submit" class="btn btn-dark" (click)="registrar()">Registrar Propiedad</button>
         </form>
     </div>

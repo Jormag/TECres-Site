@@ -8,60 +8,65 @@
                 <i class="fa fa-search"></i>
                 Busqueda Avanzada
             </a>
+            <ng-container *ngIf="checkUserLogged()">
+                <a href="#submenuPropiedades" data-toggle="collapse" aria-expanded="false"
+                    class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-home fa-fw mr-1"></span>
+                        <span class="menu-collapsed">Gestion Propiedades</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
 
-            <a href="#submenuPropiedades" data-toggle="collapse" aria-expanded="false"
-                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-home fa-fw mr-1"></span>
-                    <span class="menu-collapsed">Gestion Propiedades</span>
-                    <span class="submenu-icon ml-auto"></span>
+                <div id='submenuPropiedades' class="collapse sidebar-submenu">
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black"
+                        (click)="viewProperty()">
+                        <span class="menu-collapsed">Mostrar</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black"
+                        (click)="addProperty()">
+                        <span class="menu-collapsed">Agregar</span>
+                    </a>
                 </div>
-            </a>
 
-            <div id='submenuPropiedades' class="collapse sidebar-submenu">
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewProperty()">
-                    <span class="menu-collapsed">Mostrar</span>
+                <a href="#submenuAnuncios" data-toggle="collapse" aria-expanded="false"
+                    class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-address-card fa-fw mr-1"></span>
+                        <span class="menu-collapsed">Gestion Anuncios</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addProperty()">
-                    <span class="menu-collapsed">Agregar</span>
-                </a>
-            </div>
 
-            <a href="#submenuAnuncios" data-toggle="collapse" aria-expanded="false"
-                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-address-card fa-fw mr-1"></span>
-                    <span class="menu-collapsed">Gestion Anuncios</span>
-                    <span class="submenu-icon ml-auto"></span>
+                <div id='submenuAnuncios' class="collapse sidebar-submenu">
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewAds()">
+                        <span class="menu-collapsed">Mostrar</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addAds()">
+                        <span class="menu-collapsed">Agregar</span>
+                    </a>
                 </div>
-            </a>
 
-            <div id='submenuAnuncios' class="collapse sidebar-submenu">
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewAds()">
-                    <span class="menu-collapsed">Mostrar</span>
+                <a href="#submenuPublico" data-toggle="collapse" aria-expanded="false"
+                    class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-users fa-fw mr-1"></span>
+                        <span class="menu-collapsed"> Gestion Publico Meta</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addAds()">
-                    <span class="menu-collapsed">Agregar</span>
-                </a>
-            </div>
 
-            <a href="#submenuPublico" data-toggle="collapse" aria-expanded="false"
-                class="bg-secondary text-white list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-users fa-fw mr-1"></span>
-                    <span class="menu-collapsed"> Gestion Publico Meta</span>
-                    <span class="submenu-icon ml-auto"></span>
+                <div id='submenuPublico' class="collapse sidebar-submenu">
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black"
+                        (click)="viewAudience()">
+                        <span class="menu-collapsed">Mostrar</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-light text-black"
+                        (click)="addAudience()">
+                        <span class="menu-collapsed">Agregar</span>
+                    </a>
                 </div>
-            </a>
-
-            <div id='submenuPublico' class="collapse sidebar-submenu">
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="viewAudience()">
-                    <span class="menu-collapsed">Mostrar</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-light text-black" (click)="addAudience()">
-                    <span class="menu-collapsed">Agregar</span>
-                </a>
-            </div>
+            </ng-container>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->

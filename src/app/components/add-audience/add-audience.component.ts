@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AudienceService } from 'src/app/services/audience.service';
 import { LocationService } from 'src/app/services/location.service';
+import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
 
 @Component({
@@ -11,8 +12,8 @@ import * as $ from 'jquery';
 export class AddAudienceComponent implements OnInit {
 
   constructor(
-    private _audience:AudienceService,
-    private _locations:LocationService
+    public _audience:AudienceService,
+    public _locations:LocationService
   ) { }
 
   ngOnInit() {
@@ -38,6 +39,16 @@ export class AddAudienceComponent implements OnInit {
 
     $("#inputMinAge").on('keyup', checkAgeLimits);
     $("#inputMaxAge").on('keyup', checkAgeLimits);
+
+    this.resetAudience();
+  }
+
+  resetAudience(form?: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+    this._audience.resetAudience();
+    this._locations.resetTempLocation();
   }
 
 }

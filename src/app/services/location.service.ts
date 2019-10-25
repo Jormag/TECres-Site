@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Locations } from '../common/interfaces'
+import { Locations } from 'src/app/common/interfaces'
 
 @Injectable({
   providedIn: 'root'
