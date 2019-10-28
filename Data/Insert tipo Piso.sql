@@ -2,7 +2,7 @@ USE [TECres]
 GO
 
 INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('Concreto lujado')
-INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('Cer·mica')
+INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('Cer√°mica')
 INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('Porcelanato')
 INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('Madera')
 --INSERT INTO [dbo].[Piso] ([TipoPiso]) VALUES ('TIERRA')
