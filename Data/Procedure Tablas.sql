@@ -189,14 +189,14 @@ CREATE PROCEDURE SP_Insert_Propiedad
 @AreaTerreno INT,
 @AreaConstruccion INT,
 @Habitaciones INT,
-@Baños INT,
+@BaÃ±os INT,
 @TipoPisoProp INT,
 @Parqueos INT,
 @Gimnasio VARCHAR (4),
 @Piscina VARCHAR(4),
 @ParqueoVisitas VARCHAR (4),
 @Precio INT ,
-@Dueño INT,
+@DueÃ±o INT,
 @Foto1 IMAGE,
 @Foto2 IMAGE,
 @Foto3 IMAGE,
@@ -205,8 +205,8 @@ CREATE PROCEDURE SP_Insert_Propiedad
 )
 as
 begin
-INSERT INTO Propiedad (Titulo, Descripcion, TipoInmueble, UbicacionPropiedad, AreaTerreno, AreaConstruccion, Habitaciones, Baños, TipoPisoProp, Parqueos, Gimnasio, Piscina, ParqueoVisitas, Precio, Dueño, Foto1,Foto2, Foto3,  Foto4, Foto5 )
-values (@Titulo, @Descripcion, @TipoInmueble, @UbicacionPropiedad, @AreaTerreno, @AreaConstruccion, @Habitaciones, @Baños,@TipoPisoProp, @Parqueos, @Gimnasio,@Piscina, @ParqueoVisitas, @Precio, @Dueño, @Foto1, @Foto2, @Foto3,  @Foto4, @Foto5)
+INSERT INTO Propiedad (Titulo, Descripcion, TipoInmueble, UbicacionPropiedad, AreaTerreno, AreaConstruccion, Habitaciones, BaÃ±os, TipoPisoProp, Parqueos, Gimnasio, Piscina, ParqueoVisitas, Precio, DueÃ±o, Foto1,Foto2, Foto3,  Foto4, Foto5 )
+values (@Titulo, @Descripcion, @TipoInmueble, @UbicacionPropiedad, @AreaTerreno, @AreaConstruccion, @Habitaciones, @BaÃ±os,@TipoPisoProp, @Parqueos, @Gimnasio,@Piscina, @ParqueoVisitas, @Precio, @DueÃ±o, @Foto1, @Foto2, @Foto3,  @Foto4, @Foto5)
 end
 
 
